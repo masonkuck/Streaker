@@ -1,0 +1,22 @@
+<div class="offcanvas offcanvas-end" tabindex="-1" id="streakDialog">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title">Add Day</h5>
+        <button id="closeButton" type="button" class="btn-close" data-bs-dismiss="offcanvas"
+            aria-label="Close"></button>
+    </div>
+
+
+    <div class="offcanvas-body">
+        <h5>Activities</h5>
+
+        <div *ngFor="let act of selectableActivities; let i = index" class="form-check ms-1">
+            <input class="form-check-input" type="checkbox" [id]="act.id"
+                [(ngModel)]="selectableActivities[i].selected">
+            <label class="form-check-label" [for]="act.id">
+                {{act.name}} {{ act.description ? '(' + act.description + ')' : ''}}
+            </label>
+        </div>
+
+        <button class="btn btn-primary mt-5" (click)="save()">Save </button>
+    </div>
+</div>

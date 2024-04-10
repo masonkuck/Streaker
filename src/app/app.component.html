@@ -1,0 +1,30 @@
+<nav class="navbar bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container">
+    <h5 class="navbar-brand mb-0">Streaker</h5>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="d-flex justify-content-center">
+    <h2>You are on a <span class="badge text-bg-secondary">{{currentStreak}}</span> day streak.</h2>
+  </div>
+
+  <div class="d-flex justify-content-center">
+    <a class="btn btn-primary" [class.disabled]="!this.data.activities" data-bs-toggle="offcanvas" href="#streakDialog"
+      role="button">
+      {{ currentStreak> 0 ? "Continue Streak" : "Start Streak"}}
+    </a>
+    <a class="btn btn-secondary ms-1" data-bs-toggle="offcanvas" href="#activityDialog" role="button">Add Activity
+    </a>
+  </div>
+
+  <div class="d-flex justify-content-center mt-5">
+    <h2>You have <span class="badge text-bg-secondary">{{data.activities?.length ?? 0 }}</span> activities.</h2>
+  </div>
+</div>
+
+
+
+<app-activity-dialog (createActivity)="addActivity($event)"></app-activity-dialog>
+<app-streak-dialog *ngIf="!!this.data.activities" (createDay)="addDay($event)"
+  [activities]="this.data.activities "></app-streak-dialog>
